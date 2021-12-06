@@ -53,6 +53,6 @@ Day 2's input is at https://adventofcode.com/2021/day/2/input, etc.
 ## Windows/Mac/Linux Instructions
 
 1. Follow the instructions above for providing your puzzle input.
-2. Install Visual Studio 2022 and install support for C# and .NET 6.0 console applications.
+2. Follow the instructions for installing the .NET 6.0 SDK from https://dotnet.microsoft.com/learn/dotnet/hello-world-tutorial/install
 3. Open a command prompt and navigate to the project directory.
-4. Run `dotnet run --project src\aoc.csproj`
+4. Run `dotnet run --project src/aoc.csproj`
