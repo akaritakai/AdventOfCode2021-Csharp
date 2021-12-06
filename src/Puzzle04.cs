@@ -22,5 +22,15 @@ namespace AdventOfCode2021
         {
             return "TODO";
         }
+        
+        private class BingoBoard
+        {
+            private bool won = false;
+            private int lastNumber = -1;
+            private readonly int[,] board = new int[5, 5];
+            private readonly bool[,] marks = new bool[5, 5];
+            
+            public BingoBoard()
+        }
     }
 }
