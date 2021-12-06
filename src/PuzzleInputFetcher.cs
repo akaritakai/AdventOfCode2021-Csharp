@@ -7,6 +7,7 @@ namespace AdventOfCode2021
         private readonly ConcurrentDictionary<int, string> cache = new();
         private readonly string puzzleStorePath;
         private readonly string sessionTokenPath;
+        private readonly string baseUrl;
         private readonly object sessionTokenLock = new();
         private string? sessionToken;
         
@@ -14,12 +15,14 @@ namespace AdventOfCode2021
         {
             puzzleStorePath = "puzzle";
             sessionTokenPath = "cookie.txt";
+            baseUrl = "https://adventofcode.com";
         }
 
-        public PuzzleInputFetcher(string puzzleStorePath, string sessionTokenPath)
+        public PuzzleInputFetcher(string puzzleStorePath, string sessionTokenPath, string baseUrl)
         {
             this.puzzleStorePath = puzzleStorePath;
             this.sessionTokenPath = sessionTokenPath;
+            this.baseUrl = baseUrl;
         }
 
         public string FetchPuzzleInput(int day)
@@ -83,9 +86,9 @@ namespace AdventOfCode2021
             return Path.Join(puzzleStorePath, day.ToString());
         }
 
-        public virtual string RemotePuzzleInputUrl(int day)
+        public string RemotePuzzleInputUrl(int day)
         {
-            return "https://adventofcode.com/2021/day/" + day + "/input";
+            return baseUrl + "/2021/day/" + day + "/input";
         }
 
         public string SessionToken()
