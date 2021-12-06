@@ -10,11 +10,7 @@ namespace AdventOfCode2021
         {
             var name = "AdventOfCode2021.resources." + day;
             var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name);
-            if (stream == null)
-            {
-                throw new Exception("Could not find puzzle input for day " + day);
-            }
-            using var reader = new StreamReader(stream);
+            using var reader = new StreamReader(stream!);
             return reader.ReadToEnd();
         }
     }

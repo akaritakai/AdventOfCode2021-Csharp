@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace AdventOfCode2021
 {
@@ -8,16 +9,8 @@ namespace AdventOfCode2021
         [TestMethod]
         public void TestPart1Example1()
         {
-            var puzzle = new Puzzle01(@"199
-200
-208
-210
-200
-207
-240
-269
-260
-263");
+            var puzzle = new Puzzle01(string.Join("\n", "199", "200", "208", "210", "200", "207", "240", "269",
+                "260", "263"));
             Assert.AreEqual("7", puzzle.SolvePart1());
         }
 
@@ -32,16 +25,8 @@ namespace AdventOfCode2021
         [TestMethod]
         public void TestPart2Example1()
         {
-            var puzzle = new Puzzle01(@"199
-200
-208
-210
-200
-207
-240
-269
-260
-263");
+            var puzzle = new Puzzle01(string.Join("\n", "199", "200", "208", "210", "200", "207", "240", "269",
+                "260", "263"));
             Assert.AreEqual("5", puzzle.SolvePart2());
         }
 

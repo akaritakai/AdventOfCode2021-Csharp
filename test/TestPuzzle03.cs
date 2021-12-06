@@ -8,18 +8,8 @@ namespace AdventOfCode2021
         [TestMethod]
         public void TestPart1Example1()
         {
-            var puzzle = new Puzzle03(@"00100
-11110
-10110
-10111
-10101
-01111
-00111
-11100
-10000
-11001
-00010
-01010");
+            var puzzle = new Puzzle03(string.Join("\n", "00100", "11110", "10110", "10111", "10101", "01111", 
+                "00111", "11100", "10000", "11001", "00010", "01010"));
             Assert.AreEqual("198", puzzle.SolvePart1());
         }
 
@@ -34,18 +24,8 @@ namespace AdventOfCode2021
         [TestMethod]
         public void TestPart2Example1()
         {
-            var puzzle = new Puzzle03(@"00100
-11110
-10110
-10111
-10101
-01111
-00111
-11100
-10000
-11001
-00010
-01010");
+            var puzzle = new Puzzle03(string.Join("\n", "00100", "11110", "10110", "10111", "10101", "01111", 
+                "00111", "11100", "10000", "11001", "00010", "01010"));
             Assert.AreEqual("230", puzzle.SolvePart2());
         }
 

@@ -8,12 +8,8 @@ namespace AdventOfCode2021
         [TestMethod]
         public void TestPart1Example1()
         {
-            var puzzle = new Puzzle02(@"forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2");
+            var puzzle = new Puzzle02(string.Join("\n", "forward 5", "down 5", "forward 8", "up 3", "down 8",
+                "forward 2"));
             Assert.AreEqual("150", puzzle.SolvePart1());
         }
 
@@ -28,12 +24,8 @@ forward 2");
         [TestMethod]
         public void TestPart2Example1()
         {
-            var puzzle = new Puzzle02(@"forward 5
-down 5
-forward 8
-up 3
-down 8
-forward 2");
+            var puzzle = new Puzzle02(string.Join("\n", "forward 5", "down 5", "forward 8", "up 3", "down 8",
+                "forward 2"));
             Assert.AreEqual("900", puzzle.SolvePart2());
         }
 
