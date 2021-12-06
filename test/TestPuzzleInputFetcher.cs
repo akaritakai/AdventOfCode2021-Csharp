@@ -88,9 +88,9 @@ namespace AdventOfCode2021
                                     .UsingGet())
                       .RespondWith(Response.Create()
                                            .WithStatusCode(404)
-                                           .WithBody("Please don't repeatedly request this endpoint before it unlocks! "
-                                                   + "The calendar countdown is synchronized with the server time; "
-                                                   + "the link will be enabled on the calendar the instant this puzzle becomes available."));
+                                           .WithBody(@"Please don't repeatedly request this endpoint before it unlocks! 
+                                                      The calendar countdown is synchronized with the server time; 
+                                                      the link will be enabled on the calendar the instant this puzzle becomes available."));
                 var fetcher = mock.Object;
                 Assert.ThrowsException<Exception>(() => fetcher.FetchPuzzleInput(day));
                 mock.Verify(fetcher => fetcher.FetchLocalPuzzleInput(day), Times.Once());

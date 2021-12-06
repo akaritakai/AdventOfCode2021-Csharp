@@ -9,6 +9,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="resources\1" />
+    <None Remove="resources\2" />
+    <None Remove="resources\3" />
+    <None Remove="resources\4" />
+    <None Remove="resources\5" />
+    <None Remove="resources\6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="resources\1" />
+    <EmbeddedResource Include="resources\2" />
+    <EmbeddedResource Include="resources\3" />
+    <EmbeddedResource Include="resources\4" />
+    <EmbeddedResource Include="resources\5" />
+    <EmbeddedResource Include="resources\6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.msbuild" Version="3.1.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
