@@ -2,17 +2,12 @@
 {
     public abstract class AbstractPuzzle
     {
-        private readonly string input;
-
-        public AbstractPuzzle(string input)
+        protected AbstractPuzzle(string input)
         {
-            this.input = input;
+            Input = input;
         }
 
-        public string Input
-        {
-            get { return input; }
-        }
+        protected string Input { get; }
 
         public abstract int Day();
 

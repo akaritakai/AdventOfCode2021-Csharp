@@ -15,15 +15,15 @@ namespace AdventOfCode2021
 
         public override string SolvePart1()
         {
-            return simulate(80).ToString();
+            return Simulate(80).ToString();
         }
 
         public override string SolvePart2()
         {
-            return simulate(256).ToString();
+            return Simulate(256).ToString();
         }
 
-        private ulong simulate(int days)
+        private ulong Simulate(int days)
         {
             var fish = new long[9];
             foreach (var i in Input.Trim().Split(',').Select(int.Parse))

@@ -1,4 +1,5 @@
-﻿using AdventOfCode2021;
+﻿using System;
+using AdventOfCode2021;
 
 var fetcher = new PuzzleInputFetcher();
 var puzzles = new AbstractPuzzle[] {

@@ -1,33 +1,36 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
+using System.IO;
+using System.Net.Http;
 
 namespace AdventOfCode2021
 {
     public class PuzzleInputFetcher
     {
-        private readonly ConcurrentDictionary<int, string> cache = new();
-        private readonly string puzzleStorePath;
-        private readonly string sessionTokenPath;
-        private readonly string baseUrl;
-        private readonly object sessionTokenLock = new();
-        private string? sessionToken;
+        private readonly ConcurrentDictionary<int, string> _cache = new();
+        private readonly string _puzzleStorePath;
+        private readonly string _sessionTokenPath;
+        private readonly string _baseUrl;
+        private readonly object _sessionTokenLock = new();
+        private string? _sessionToken;
         
         public PuzzleInputFetcher()
         {
-            puzzleStorePath = "puzzle";
-            sessionTokenPath = "cookie.txt";
-            baseUrl = "https://adventofcode.com";
+            _puzzleStorePath = "puzzle";
+            _sessionTokenPath = "cookie.txt";
+            _baseUrl = "https://adventofcode.com";
         }
 
         public PuzzleInputFetcher(string puzzleStorePath, string sessionTokenPath, string baseUrl)
         {
-            this.puzzleStorePath = puzzleStorePath;
-            this.sessionTokenPath = sessionTokenPath;
-            this.baseUrl = baseUrl;
+            _puzzleStorePath = puzzleStorePath;
+            _sessionTokenPath = sessionTokenPath;
+            _baseUrl = baseUrl;
         }
 
         public string FetchPuzzleInput(int day)
         {
-            return cache.GetOrAdd(day, key =>
+            return _cache.GetOrAdd(day, _ =>
             {
                 try
                 {
@@ -37,6 +40,7 @@ namespace AdventOfCode2021
                     }
                     catch (Exception)
                     {
+                        // ignored
                     }
 
                     var input = FetchRemotePuzzleInput(day);
@@ -47,6 +51,7 @@ namespace AdventOfCode2021
                     }
                     catch (Exception)
                     {
+                        // ignored
                     }
 
                     return input;
@@ -64,7 +69,7 @@ namespace AdventOfCode2021
 
         public virtual void StorePuzzleInputLocally(int day, string input)
         {
-            Directory.CreateDirectory(puzzleStorePath);
+            Directory.CreateDirectory(_puzzleStorePath);
             File.WriteAllText(PuzzleStorePath(day), input);
         }
 
@@ -83,28 +88,24 @@ namespace AdventOfCode2021
 
         public string PuzzleStorePath(int day)
         {
-            return Path.Join(puzzleStorePath, day.ToString());
+            return Path.Join(_puzzleStorePath, day.ToString());
         }
 
         public string RemotePuzzleInputUrl(int day)
         {
-            return baseUrl + "/2021/day/" + day + "/input";
+            return _baseUrl + "/2021/day/" + day + "/input";
         }
 
-        public string SessionToken()
+        private string SessionToken()
         {
-            lock (sessionTokenLock)
+            lock (_sessionTokenLock)
             {
                 try
                 {
-                    if (sessionToken == null)
-                    {
-                        sessionToken = File.ReadAllText(sessionTokenPath).Trim();
-                    }
-                    return sessionToken;
+                    return _sessionToken ??= File.ReadAllText(_sessionTokenPath).Trim();
                 } catch (Exception e)
                 {
-                    throw new Exception("Couldn't get session data from " + sessionTokenPath, e);
+                    throw new Exception("Couldn't get session data from " + _sessionTokenPath, e);
                 }
             }
         }

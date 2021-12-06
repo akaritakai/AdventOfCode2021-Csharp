@@ -1,10 +1,9 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Reflection;
 
 namespace AdventOfCode2021
 {
-    internal class BasePuzzleTest
+    internal static class BasePuzzleTest
     {
         public static string PuzzleInput(int day)
         {

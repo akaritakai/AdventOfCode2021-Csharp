@@ -243,74 +243,65 @@ namespace AdventOfCode2021
             return RandomString("0123456789abcdef", 96);
         }
 
-        private static readonly Random random = new();
+        private static readonly Random Random = new();
 
         private static string RandomString(string charset, int size)
         {
-            return new string(Enumerable.Repeat(charset, size).Select(s => s[random.Next(s.Length)]).ToArray());
+            return new string(Enumerable.Repeat(charset, size).Select(s => s[Random.Next(s.Length)]).ToArray());
         }
 
         private class LocalPuzzleStore : IDisposable
         {
-            private readonly string location;
+            private readonly string _location;
 
             public LocalPuzzleStore()
             {
-                location = Path.GetTempPath() + Guid.NewGuid().ToString();
-                Directory.CreateDirectory(location);
+                _location = Path.GetTempPath() + Guid.NewGuid();
+                Directory.CreateDirectory(_location);
             }
 
             public string Location() { 
-                return location;
+                return _location;
             }
 
             public string PuzzleLocation(int day)
             {
-                return Path.Join(location, day.ToString());
+                return Path.Join(_location, day.ToString());
             }
 
             public void Dispose()
             {
-                Directory.Delete(location, true);
+                Directory.Delete(_location, true);
             }
         }
 
         private class LocalSessionToken : IDisposable
         {
-            private readonly string sessionToken;
-            private readonly string location;
+            private readonly string _sessionToken;
+            private readonly string _location;
 
             public LocalSessionToken()
             {
-                location = Path.GetTempPath() + Guid.NewGuid().ToString();
-                Directory.CreateDirectory(location);
-                var file = Path.Join(location, "cookie.txt");
-                sessionToken = RandomSessionToken();
-                File.WriteAllText(file, sessionToken);
-            }
-
-            public LocalSessionToken(string sessionToken)
-            {
-                location = Path.GetTempPath() + Guid.NewGuid().ToString();
-                Directory.CreateDirectory(location);
-                var file = Path.Join(location, "cookie.txt");
-                this.sessionToken = sessionToken;
-                File.WriteAllText(file, sessionToken);
+                _location = Path.GetTempPath() + Guid.NewGuid();
+                Directory.CreateDirectory(_location);
+                var file = Path.Join(_location, "cookie.txt");
+                _sessionToken = RandomSessionToken();
+                File.WriteAllText(file, _sessionToken);
             }
 
             public string Location()
             {
-                return Path.Join(location, "cookie.txt");
+                return Path.Join(_location, "cookie.txt");
             }
 
             public string SessionToken()
             {
-                return sessionToken;
+                return _sessionToken;
             }
 
             public void Dispose()
             {
-                Directory.Delete(location, true);
+                Directory.Delete(_location, true);
             }
         }
     }

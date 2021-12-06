@@ -4,8 +4,11 @@ namespace AdventOfCode2021
 {
     public class Puzzle02 : AbstractPuzzle
     {
+        private readonly string[] _instructions;
+        
         public Puzzle02(string input) : base(input)
         {
+            _instructions = Input.Trim().Split('\n').ToArray();
         }
 
         public override int Day()
@@ -17,8 +20,7 @@ namespace AdventOfCode2021
         {
             var x = 0;
             var y = 0;
-            var instructions = Input.Trim().Split('\n').ToArray();
-            foreach (var instruction in instructions)
+            foreach (var instruction in _instructions)
             {
                 var command = instruction.Split(' ')[0];
                 var value = int.Parse(instruction.Split(' ')[1]);
@@ -43,8 +45,7 @@ namespace AdventOfCode2021
             var x = 0;
             var y = 0;
             var aim = 0;
-            var instructions = Input.Trim().Split('\n').ToArray();
-            foreach (var instruction in instructions)
+            foreach (var instruction in _instructions)
             {
                 var command = instruction.Split(' ')[0];
                 var value = int.Parse(instruction.Split(' ')[1]);

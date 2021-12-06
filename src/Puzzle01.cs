@@ -4,8 +4,11 @@ namespace AdventOfCode2021
 {
     public class Puzzle01 : AbstractPuzzle
     {
+        private readonly int[] _depths; 
+        
         public Puzzle01(string input) : base(input)
         {
+            _depths = Input.Trim().Split('\n').Select(int.Parse).ToArray();
         }
 
         public override int Day()
@@ -15,11 +18,10 @@ namespace AdventOfCode2021
 
         public override string SolvePart1()
         {
-            var depths = Input.Trim().Split('\n').Select(long.Parse).ToArray();
             var count = 0;
-            for (var i = 1; i < depths.Length; i++)
+            for (var i = 1; i < _depths.Length; i++)
             {
-                if (depths[i] > depths[i - 1])
+                if (_depths[i] > _depths[i - 1])
                 {
                     count++;
                 }
@@ -29,12 +31,11 @@ namespace AdventOfCode2021
 
         public override string SolvePart2()
         {
-            var depths = Input.Trim().Split('\n').Select(long.Parse).ToArray();
             var count = 0;
-            var prevSum = depths[0] + depths[1] + depths[2];
-            for (var i = 3; i < depths.Length; i++)
+            var prevSum = _depths[0] + _depths[1] + _depths[2];
+            for (var i = 3; i < _depths.Length; i++)
             {
-                var sum = depths[i - 2] + depths[i - 1] + depths[i];
+                var sum = _depths[i - 2] + _depths[i - 1] + _depths[i];
                 if (sum > prevSum)
                 {
                     count++;
