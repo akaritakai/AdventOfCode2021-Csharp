@@ -234,7 +234,7 @@ namespace AdventOfCode2021
                 + "[\\]^_`"                    // ASCII codes 91-96 (symbols)
                 + "abcdefghijklmnopqrstuvwxyz" // ASCII codes 97-122 (lowercase letters)
                 + "{|}~";                      // ASCII codes 123-126 (symbols)
-            return RandomString(charset, 10); // TODO: Change this to 65536 later
+            return RandomString(charset, 65536);
         }
 
         private static string RandomSessionToken()
