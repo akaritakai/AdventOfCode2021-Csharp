@@ -1,0 +1,19 @@
+# Visual Studio
+.vs/
+TestResults/
+src/bin/
+src/obj/
+test/bin/
+test/obj/
+test/TestResults/
+
+# JetBrains
+.idea
+*.iml
+*.ipr
+*.iws
+out/
+
+# Project specific
+cookie.txt
+/puzzle/
