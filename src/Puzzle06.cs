@@ -15,12 +15,28 @@ namespace AdventOfCode2021
 
         public override string SolvePart1()
         {
-            return "TODO";
+            return simulate(80).ToString();
         }
 
         public override string SolvePart2()
         {
-            return "TODO";
+            return simulate(256).ToString();
+        }
+
+        private ulong simulate(int days)
+        {
+            var fish = new long[9];
+            foreach (var i in Input.Trim().Split(',').Select(int.Parse))
+            {
+                fish[i]++;
+            }
+            var pointer = 0;
+            for (var day = 0; day < days; day++)
+            {
+                fish[(pointer + 7) % 9] += fish[pointer];
+                pointer = (pointer + 1) % 9;
+            }
+            return (ulong) fish.Sum();
         }
     }
 }
