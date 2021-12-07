@@ -23,7 +23,7 @@ namespace AdventOfCode2021
             return Simulate(256).ToString();
         }
 
-        private ulong Simulate(int days)
+        private long Simulate(int days)
         {
             var fish = new long[9];
             foreach (var i in Input.Trim().Split(',').Select(int.Parse))
@@ -36,7 +36,7 @@ namespace AdventOfCode2021
                 fish[(pointer + 7) % 9] += fish[pointer];
                 pointer = (pointer + 1) % 9;
             }
-            return (ulong) fish.Sum();
+            return fish.Sum();
         }
     }
 }
