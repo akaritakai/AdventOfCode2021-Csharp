@@ -15,6 +15,7 @@
     <None Remove="resources\4" />
     <None Remove="resources\5" />
     <None Remove="resources\6" />
+    <None Remove="resources\7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     <EmbeddedResource Include="resources\4" />
     <EmbeddedResource Include="resources\5" />
     <EmbeddedResource Include="resources\6" />
+    <EmbeddedResource Include="resources\7" />
   </ItemGroup>
 
   <ItemGroup>

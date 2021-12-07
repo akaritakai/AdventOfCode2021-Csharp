@@ -8,7 +8,8 @@ var puzzles = new AbstractPuzzle[] {
     new Puzzle03(fetcher.FetchPuzzleInput(3)),
     new Puzzle04(fetcher.FetchPuzzleInput(4)),
     new Puzzle05(fetcher.FetchPuzzleInput(5)),
-    new Puzzle06(fetcher.FetchPuzzleInput(6))
+    new Puzzle06(fetcher.FetchPuzzleInput(6)),
+    new Puzzle07(fetcher.FetchPuzzleInput(7))
 };
 foreach (var puzzle in puzzles)
 {
