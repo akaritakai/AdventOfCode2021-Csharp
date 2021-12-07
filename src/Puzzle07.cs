@@ -6,14 +6,10 @@ namespace AdventOfCode2021
     public class Puzzle07 : AbstractPuzzle
     {
         private readonly int[] _crabPositions;
-        private readonly int _minPosition;
-        private readonly int _maxPosition;
         
         public Puzzle07(string input) : base(input)
         {
-            _crabPositions = input.Split(',').Select(int.Parse).ToArray();
-            _minPosition = _crabPositions.Min();
-            _maxPosition = _crabPositions.Max();
+            _crabPositions = input.Split(',').Select(int.Parse).OrderBy(x => x).ToArray();
         }
 
         public override int Day()
@@ -23,26 +19,18 @@ namespace AdventOfCode2021
 
         public override string SolvePart1()
         {
-            var minCost = int.MaxValue;
-            for (var i = _minPosition; i <= _maxPosition; i++)
-            {
-                var cost = _crabPositions.Sum(position => Math.Abs(position - i));
-                minCost = Math.Min(cost, minCost);
-            }
-            return minCost.ToString();
+            var median = _crabPositions[_crabPositions.Length / 2];
+            return _crabPositions.Sum(position => Math.Abs(position - median)).ToString();
         }
 
         public override string SolvePart2()
         {
-            var minCost = int.MaxValue;
-            for (var i = _minPosition; i <= _maxPosition; i++)
-            {
-                var cost = _crabPositions.Select(position => Math.Abs(position - i))
-                    .Select(distance => distance * (distance + 1) / 2)
-                    .Sum();
-                minCost = Math.Min(cost, minCost);
-            }
-            return minCost.ToString();
+            var mean = _crabPositions.Sum() / (double) _crabPositions.Length;
+            var floorCost = _crabPositions.Select(x => (int) Math.Abs(x - Math.Floor(mean)))
+                .Sum(x => x * (x + 1) / 2);
+            var ceilCost = _crabPositions.Select(x => (int) Math.Abs(x - Math.Ceiling(mean)))
+                .Sum(x => x * (x + 1) / 2);
+            return Math.Min(floorCost, ceilCost).ToString();
         }
     }
 }
