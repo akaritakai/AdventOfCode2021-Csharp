@@ -63,18 +63,16 @@ namespace AdventOfCode2021
 
             public IEnumerable<(int, int)> Points()
             {
-                var points = new HashSet<(int, int)>();
                 var dx = Math.Sign(x2 - x1);
                 var dy = Math.Sign(y2 - y1);
                 var x = x1;
                 var y = y1;
                 while (x != x2 + dx || y != y2 + dy)
                 {
-                    points.Add((x, y));
+                    yield return (x, y);
                     x += dx;
                     y += dy;
                 }
-                return points;
             }
         }
     }
