@@ -35,9 +35,8 @@ namespace AdventOfCode2021
                 .Select(line =>
                 {
                     var parts = line.Split(" | ");
-                    var inputs = parts[0].Split(' ');
+                    var patterns = parts[0].Split(' ');
                     var outputs = parts[1].Split(' ');
-                    var patterns = inputs.Concat(outputs).ToArray();
                     var solver = Solver(patterns);
                     return outputs
                         .Select(output => solver(output))
