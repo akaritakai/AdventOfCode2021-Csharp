@@ -11,6 +11,7 @@ var puzzles = new AbstractPuzzle[] {
     new Puzzle06(fetcher.FetchPuzzleInput(6)),
     new Puzzle07(fetcher.FetchPuzzleInput(7)),
     new Puzzle08(fetcher.FetchPuzzleInput(8)),
+    new Puzzle09(fetcher.FetchPuzzleInput(9)),
 };
 foreach (var puzzle in puzzles)
 {
