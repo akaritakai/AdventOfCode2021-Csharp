@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <None Remove="resources\1" />
+    <None Remove="resources\10" />
     <None Remove="resources\2" />
     <None Remove="resources\3" />
     <None Remove="resources\4" />
@@ -22,6 +23,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="resources\1" />
+    <EmbeddedResource Include="resources\10" />
     <EmbeddedResource Include="resources\2" />
     <EmbeddedResource Include="resources\3" />
     <EmbeddedResource Include="resources\4" />
