@@ -13,6 +13,7 @@
     <None Remove="resources\10" />
     <None Remove="resources\11" />
     <None Remove="resources\12" />
+    <None Remove="resources\13" />
     <None Remove="resources\2" />
     <None Remove="resources\3" />
     <None Remove="resources\4" />
@@ -28,6 +29,7 @@
     <EmbeddedResource Include="resources\10" />
     <EmbeddedResource Include="resources\11" />
     <EmbeddedResource Include="resources\12" />
+    <EmbeddedResource Include="resources\13" />
     <EmbeddedResource Include="resources\2" />
     <EmbeddedResource Include="resources\3" />
     <EmbeddedResource Include="resources\4" />
