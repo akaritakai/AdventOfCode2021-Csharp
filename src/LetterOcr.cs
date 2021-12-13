@@ -193,7 +193,6 @@ namespace AdventOfCode2021
 
         private static char ParseLetter(bool[,] image, int rowOffset, int colOffset)
         {
-            // Iterate over (key, value) in _letters
             foreach (var (letter, pattern) in Letters)
             {
                 var allMatch = true;
