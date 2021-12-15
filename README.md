@@ -2,8 +2,8 @@
 
 [![Build Status](https://github.com/akaritakai/AdventOfCode2021-Csharp/actions/workflows/main.yml/badge.svg)](https://github.com/akaritakai/AdventOfCode2021-Csharp/actions)
 [![Code Coverage](https://img.shields.io/codecov/c/github/akaritakai/AdventOfCode2021-Csharp.svg)](https://codecov.io/gh/akaritakai/AdventOfCode2021-Csharp)
-![Stars](https://img.shields.io/badge/stars%20⭐-28-yellow)
-![Days Completed](https://img.shields.io/badge/days%20completed-14-green)
+![Stars](https://img.shields.io/badge/stars%20⭐-30-yellow)
+![Days Completed](https://img.shields.io/badge/days%20completed-15-green)
 
 This repo contains my Advent Of Code 2021 solutions in C# using .NET 6.0.
 
