@@ -1,135 +1,130 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿namespace AdventOfCode2021;
 
-namespace AdventOfCode2021
+public class Puzzle04 : AbstractPuzzle
 {
-    public class Puzzle04 : AbstractPuzzle
+    private readonly int[] _numbers;
+    private readonly List<BingoBoard> _boards = new();
+        
+    public Puzzle04(string input) : base(input)
     {
-        private readonly int[] _numbers;
-        private readonly List<BingoBoard> _boards = new();
+        var lines = Input.Split('\n').ToArray();
+        _numbers = lines[0].Split(',').Select(int.Parse).ToArray();
+        var remainingNumbers = string.Join(" ", lines.Skip(1))
+            .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+            .Select(int.Parse)
+            .ToArray();
+        for (var i = 0; i < remainingNumbers.Length; i += 25)
+        {
+            var boardNumbers = remainingNumbers.Skip(i).Take(25).ToArray();
+            _boards.Add(new BingoBoard(boardNumbers));
+        }
+    }
+
+    public override int Day()
+    {
+        return 4;
+    }
+
+    public override string SolvePart1()
+    {
+        foreach (var number in _numbers)
+        {
+            foreach (var board in _boards)
+            {
+                board.AddNumber(number);
+                if (board.HasWon())
+                {
+                    return board.Score().ToString();
+                }
+            }
+        }
+        throw new Exception("No bingo board won with this given input");
+    }
+
+    public override string SolvePart2()
+    {
+        foreach (var number in _numbers)
+        {
+            foreach (var board in _boards)
+            {
+                board.AddNumber(number);
+                if (_boards.All(b => b.HasWon()))
+                {
+                    return board.Score().ToString();
+                }
+            }
+        }
+        throw new Exception("Not all bingo board have won with the given input");
+    }
         
-        public Puzzle04(string input) : base(input)
+    private class BingoBoard
+    {
+        private bool _won;
+        private int _lastNumber;
+        private readonly int[,] _board = new int[5, 5];
+        private readonly bool[,] _marks = new bool[5, 5];
+
+        public BingoBoard(IReadOnlyList<int> numbers)
         {
-            var lines = Input.Split('\n').ToArray();
-            _numbers = lines[0].Split(',').Select(int.Parse).ToArray();
-            var remainingNumbers = string.Join(" ", lines.Skip(1))
-                .Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                .Select(int.Parse)
-                .ToArray();
-            for (var i = 0; i < remainingNumbers.Length; i += 25)
+            var i = 0;
+            for (var y = 0; y < 5; y++)
             {
-                var boardNumbers = remainingNumbers.Skip(i).Take(25).ToArray();
-                _boards.Add(new BingoBoard(boardNumbers));
+                for (var x = 0; x < 5; x++)
+                {
+                    _board[y, x] = numbers[i++];
+                }
             }
         }
 
-        public override int Day()
+        public bool HasWon()
         {
-            return 4;
+            return _won;
         }
 
-        public override string SolvePart1()
+        public void AddNumber(int n)
         {
-            foreach (var number in _numbers)
+            if (HasWon()) return;
+            _lastNumber = n;
+            for (var y = 0; y < 5; y++)
             {
-                foreach (var board in _boards)
+                for (var x = 0; x < 5; x++)
                 {
-                    board.AddNumber(number);
-                    if (board.HasWon())
+                    if (_board[y, x] == n)
                     {
-                        return board.Score().ToString();
+                        _marks[y, x] = true;
                     }
                 }
             }
-            throw new Exception("No bingo board won with this given input");
+            for (var i = 0; i < 5; i++)
+            {
+                var row = true;
+                var col = true;
+                for (var j = 0; j < 5; j++)
+                {
+                    row &= _marks[i, j];
+                    col &= _marks[j, i];
+                }
+                if (!row && !col) continue;
+                _won = true;
+                return;
+            }
         }
 
-        public override string SolvePart2()
+        public int Score()
         {
-            foreach (var number in _numbers)
+            var sum = 0;
+            for (var y = 0; y < 5; y++)
             {
-                foreach (var board in _boards)
+                for (var x = 0; x < 5; x++)
                 {
-                    board.AddNumber(number);
-                    if (_boards.All(b => b.HasWon()))
+                    if (!_marks[y, x])
                     {
-                        return board.Score().ToString();
-                    }
-                }
-            }
-            throw new Exception("Not all bingo board have won with the given input");
-        }
-        
-        private class BingoBoard
-        {
-            private bool _won;
-            private int _lastNumber;
-            private readonly int[,] _board = new int[5, 5];
-            private readonly bool[,] _marks = new bool[5, 5];
-
-            public BingoBoard(IReadOnlyList<int> numbers)
-            {
-                var i = 0;
-                for (var y = 0; y < 5; y++)
-                {
-                    for (var x = 0; x < 5; x++)
-                    {
-                        _board[y, x] = numbers[i++];
+                        sum += _board[y, x];
                     }
                 }
             }
 
-            public bool HasWon()
-            {
-                return _won;
-            }
-
-            public void AddNumber(int n)
-            {
-                if (HasWon()) return;
-                _lastNumber = n;
-                for (var y = 0; y < 5; y++)
-                {
-                    for (var x = 0; x < 5; x++)
-                    {
-                        if (_board[y, x] == n)
-                        {
-                            _marks[y, x] = true;
-                        }
-                    }
-                }
-                for (var i = 0; i < 5; i++)
-                {
-                    var row = true;
-                    var col = true;
-                    for (var j = 0; j < 5; j++)
-                    {
-                        row &= _marks[i, j];
-                        col &= _marks[j, i];
-                    }
-                    if (!row && !col) continue;
-                    _won = true;
-                    return;
-                }
-            }
-
-            public int Score()
-            {
-                var sum = 0;
-                for (var y = 0; y < 5; y++)
-                {
-                    for (var x = 0; x < 5; x++)
-                    {
-                        if (!_marks[y, x])
-                        {
-                            sum += _board[y, x];
-                        }
-                    }
-                }
-
-                return sum * _lastNumber;
-            }
+            return sum * _lastNumber;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using AdventOfCode2021;
+﻿using AdventOfCode2021;
 
 var fetcher = new PuzzleInputFetcher();
 var puzzles = new AbstractPuzzle[] {
@@ -18,6 +17,7 @@ var puzzles = new AbstractPuzzle[] {
     new Puzzle13(fetcher.FetchPuzzleInput(13)),
     new Puzzle14(fetcher.FetchPuzzleInput(14)),
     new Puzzle15(fetcher.FetchPuzzleInput(15)),
+    new Puzzle16(fetcher.FetchPuzzleInput(16)),
 };
 foreach (var puzzle in puzzles)
 {

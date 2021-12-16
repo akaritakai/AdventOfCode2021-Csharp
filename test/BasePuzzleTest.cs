@@ -1,16 +1,15 @@
 ﻿using System.IO;
 using System.Reflection;
 
-namespace AdventOfCode2021
+namespace AdventOfCode2021;
+
+internal static class BasePuzzleTest
 {
-    internal static class BasePuzzleTest
+    public static string PuzzleInput(int day)
     {
-        public static string PuzzleInput(int day)
-        {
-            var name = "AdventOfCode2021.resources." + day;
-            var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name);
-            using var reader = new StreamReader(stream!);
-            return reader.ReadToEnd();
-        }
+        var name = "AdventOfCode2021.resources." + day;
+        var stream = Assembly.GetExecutingAssembly().GetManifestResourceStream(name);
+        using var reader = new StreamReader(stream!);
+        return reader.ReadToEnd();
     }
 }
